@@ -1,4 +1,4 @@
-package selwyn.tech.sysc4806project;
+package tech.selwyn.sysc4806project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
