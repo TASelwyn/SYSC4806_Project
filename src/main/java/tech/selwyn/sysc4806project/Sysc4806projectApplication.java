@@ -1,4 +1,4 @@
-package selwyn.tech.sysc4806project;
+package tech.selwyn.sysc4806project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
