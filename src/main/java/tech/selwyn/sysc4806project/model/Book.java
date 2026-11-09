@@ -2,9 +2,7 @@ package tech.selwyn.sysc4806project.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * Represents a book in the Amazin Online Bookstore
@@ -16,6 +14,9 @@ import lombok.Setter;
 @Table(name = "books")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public class Book {
 
     // Unique database identifier generated automatically.
@@ -48,30 +49,6 @@ public class Book {
     @Column(nullable = false)
     private int stockQuantity;
 
-    /**
-     * Default constructor
-     */
-    protected Book() {
-    }
-
-    /**
-     * Constructs a book with its catalog and inventory information
-     * The database generates the ID when the book is persisted.
-     */
-    public Book(String isbn, String title, String author,
-                String publisher, String description,
-                String imageUrl, BigDecimal price,
-                int stockQuantity) {
-
-        this.isbn = isbn;
-        this.title = title;
-        this.author = author;
-        this.publisher = publisher;
-        this.description = description;
-        this.imageUrl = imageUrl;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-    }
 
 }
 
