@@ -25,7 +25,7 @@ public class Book {
     @Setter(AccessLevel.NONE)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 20)
+    @Column(nullable = false, unique = true, length = 13)
     private String isbn;
 
     @Column(nullable = false)
