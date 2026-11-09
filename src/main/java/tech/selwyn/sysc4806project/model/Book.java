@@ -42,9 +42,8 @@ public class Book {
     @Column(length = 500)
     private String imageUrl;
 
-    // BigDecimal avoids floating-point precision issues with prices.
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
+    private float price;
 
     @Column(nullable = false)
     private int stockQuantity;
