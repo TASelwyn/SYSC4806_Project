@@ -6,6 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tech.selwyn.sysc4806project.service.CatalogService;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.http.HttpStatus;
+import jakarta.servlet.http.HttpServletResponse;
+import tech.selwyn.sysc4806project.model.Book;
+import java.util.Optional;
 @Controller
 @RequestMapping("/books")
 public class BookController {
@@ -41,5 +49,27 @@ public class BookController {
         model.addAttribute("inStock", inStock);
         model.addAttribute("sortByPrice", sortByPrice);
         return "books/list";   // same page as the list, just filtered
+    }
+
+    // GET /books/5  -> shows one book, or a "not found" page
+    @GetMapping("/{id}")
+    public String bookDetails(@PathVariable Long id, Model model, HttpServletResponse response) {
+        Optional<Book> book = catalogService.getBookById(id);
+
+        if (book.isEmpty()) {
+            response.setStatus(HttpStatus.NOT_FOUND.value());   // real 404 status code
+            model.addAttribute("bookId", id);
+            return "error/book-not-found";
+        }
+
+        model.addAttribute("book", book.get());
+        return "books/detail";
+    }
+
+    // GET /books/abc  -> "abc" isn't a number, show the same "not found" page
+    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleInvalidId() {
+        return "error/book-not-found";
     }
 }
