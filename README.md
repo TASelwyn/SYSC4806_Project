@@ -42,7 +42,7 @@ Build & Run the application
 - Thomas Selwyn (101183163)
 - Kemal Sogut
 - Sam Touma
-- Cameron Greer
+- Cameron Greer (101309871)
 - Nitish Grover
 
 ## License
