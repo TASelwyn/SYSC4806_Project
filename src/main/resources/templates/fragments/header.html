@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<header th:fragment="header" class="site-header">
+    <a th:href="@{/}" class="logo">Amazin</a>
+    <nav><a th:href="@{/books}">All books</a></nav>
+    <form th:action="@{/books/search}" method="get" class="search-form">
+        <input type="text" name="q" th:value="${query}" placeholder="Search title or author">
+        <button type="submit">Search</button>
+    </form>
+</header>
+</body>
+</html>
