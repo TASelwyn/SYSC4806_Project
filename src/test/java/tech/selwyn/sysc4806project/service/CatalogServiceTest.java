@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Sort;
 import tech.selwyn.sysc4806project.model.Book;
 import tech.selwyn.sysc4806project.repository.BookRepository;
 
@@ -62,5 +63,59 @@ public class CatalogServiceTest {
         Optional<Book> result = catalogService.getBookById(123456789L);
 
         assertTrue(result.isEmpty());
+    }
+
+    @Test
+    void searchBooksWithoutFiltersOrSorting() {
+        List<Book> expectedBooks = List.of(
+                Book.builder()
+                        .isbn("1234567890123")
+                        .title("Testing Book")
+                        .author("Testing Author")
+                        .publisher("Testing Publisher")
+                        .price(new BigDecimal("10.00"))
+                        .stockQuantity(5)
+                        .build()
+        );
+
+        when(bookRepository.searchCatalog(
+                "Testing",
+                false,
+                Sort.unsorted()
+        )).thenReturn(expectedBooks);
+
+        List<Book> result = catalogService.searchBooks("Testing", false, false);
+
+        assertEquals(expectedBooks, result);
+
+        verify(bookRepository).searchCatalog("Testing", false, Sort.unsorted());
+    }
+
+    @Test
+    void searchBooksWithInStockFiltering() {
+        List<Book> expectedBooks = List.of(mock(Book.class));
+
+        when(bookRepository.searchCatalog("Java", true, Sort.unsorted())).thenReturn(expectedBooks);
+
+        List<Book> result = catalogService.searchBooks("Java", true, false);
+
+        assertEquals(expectedBooks, result);
+
+        verify(bookRepository).searchCatalog("Java", true, Sort.unsorted());
+    }
+
+    @Test
+    void searchBooksWIthPriceSorting() {
+        List<Book> expectedBooks = List.of(mock(Book.class));
+
+        Sort expectedSort = Sort.by(Sort.Direction.ASC, "price");
+
+        when(bookRepository.searchCatalog("Java", false, expectedSort)).thenReturn(expectedBooks);
+
+        List<Book> result = catalogService.searchBooks("Java", false, true);
+
+        assertEquals(expectedBooks, result);
+
+        verify(bookRepository).searchCatalog("Java", false, expectedSort);
     }
 }
