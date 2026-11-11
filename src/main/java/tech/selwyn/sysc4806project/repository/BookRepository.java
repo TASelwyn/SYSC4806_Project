@@ -1,8 +1,12 @@
 
 package tech.selwyn.sysc4806project.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import tech.selwyn.sysc4806project.model.Book;
+
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -29,7 +33,25 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             String title, String author);
 
     /**
-     * Finds books that contain specified ISBN
+     * Finds books that contain specified ISBN.
      */
     List<Book> findByIsbnContainingIgnoreCase(String isbn);
+
+    /**
+     * Searches books by title, author, or ISBN and can optionally filter
+     * for books in stock.
+     */
+    @Query("""
+        SELECT b FROM books b
+        WHERE (
+            :search IS NULL
+            OR LOWER(b.title) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(b.author) LIKE LOWER(CONCAT('%', :search, '%'))
+            OR LOWER(b.isbn) LIKE LOWER(CONCAT('%', :search, '%'))
+    """)
+    List<Book> searchCatalog(
+            @Param("search") String search,
+            @Param("inStockOnly") boolean inStockOnly,
+            Sort sort
+    );
 }
