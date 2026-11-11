@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import tech.selwyn.sysc4806project.model.Book;
 import tech.selwyn.sysc4806project.repository.BookRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,7 +37,15 @@ public class CatalogServiceTest {
 
     @Test
     void getBookByIdReturnsBook() {
-        Book book = new Book();
+        Book book = Book.builder()
+                .isbn("1234567890123")
+                .title("Testing Book")
+                .author("Testing Author")
+                .publisher("Testing Publisher")
+                .description("Testing Description")
+                .price(new BigDecimal("10.00"))
+                .stockQuantity(5)
+                .build();
 
         when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
 
