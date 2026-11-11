@@ -42,12 +42,14 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * for books in stock.
      */
     @Query("""
-        SELECT b FROM books b
+        SELECT b FROM Book b
         WHERE (
             :search IS NULL
             OR LOWER(b.title) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(b.author) LIKE LOWER(CONCAT('%', :search, '%'))
             OR LOWER(b.isbn) LIKE LOWER(CONCAT('%', :search, '%'))
+            )
+            AND (:inStockOnly = false OR b.stockQuantity > 0)
     """)
     List<Book> searchCatalog(
             @Param("search") String search,
