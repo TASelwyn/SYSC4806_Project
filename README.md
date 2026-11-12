@@ -73,10 +73,10 @@ Nothing currently in progress.
 
 ## Authors
 - Thomas Selwyn (101183163)
-- Kemal Sogut
+- Kemal Sogut (101280677)
 - Sam Touma (101033509)
 - Cameron Greer (101309871)
-- Nitish Grover
+- Nitish Grover (101324174)
 
 
 ### Database Schema
