@@ -119,5 +119,3 @@ public class CatalogServiceTest {
         verify(bookRepository).searchCatalog("Java", false, expectedSort);
     }
 }
-
-}
