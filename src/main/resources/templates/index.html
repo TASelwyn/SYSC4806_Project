@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Amazin Bookstore</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+<main class="container">
+    <h1>Welcome to Amazin</h1>
+    <p>Find your next favourite book.</p>
+    <h2>Featured books</h2>
+    <div th:replace="~{fragments/books :: grid(${books})}"></div>
+    <a th:href="@{/books}">Browse all books →</a>
+</main>
+</body>
+</html>

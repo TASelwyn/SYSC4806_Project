@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Amazin Bookstore</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+<main class="container">
+    <form th:action="@{/books/search}" method="get" class="search-form large">
+        <input type="text" name="q" th:value="${query}" placeholder="Title, author or ISBN">
+        <button type="submit">Search</button>
+    </form>
+
+    <h1 th:if="${#strings.isEmpty(query)}">All books</h1>
+    <h1 th:unless="${#strings.isEmpty(query)}">Results for "<span th:text="${query}"></span>"</h1>
+
+    <div th:replace="~{fragments/books :: grid(${books})}"></div>
+</main>
+</body>
+</html>
