@@ -38,13 +38,50 @@ Build & Run the application
 ```
 
 
+## Project Status
+Summary of the [Kanban board](https://github.com/users/TASelwyn/projects) as of 2026-11-12.
+
+### Todo
+| Issue | Task | Assignee |
+|---|---|---|
+| #14 | Shopping cart | TASelwyn |
+| #15 | Checkout controllers | |
+| #31 | Inventory updates for simulated purchases | |
+| #32 | Inventory and checkout integration tests | |
+| #33 | Thymeleaf pages | |
+
+### In Progress
+Nothing currently in progress.
+
+### Done
+| Issue | Task | Assignee | PR |
+|---|---|---|---|
+| #1 | Add initial Spring setup | | #2 |
+| #3 | Add Maven CI | | #4 |
+| #5 | Implement Book JPA entity | SamTouma8 | #11 |
+| #6 | Configure H2 database | SamTouma8 | #12 |
+| #7 | Implement BookRepository | SamTouma8 | #16 |
+| #8 | Populate sample book data | SamTouma8 | #17 |
+| #9 | Write repository and integration tests | SamTouma8 | #26 |
+| #13 | Azure deployment | | |
+| #18 | Create Thymeleaf pages (2/2 sub-issues) | | |
+| #22 | Book controller: list, search and detail endpoints | initishgrover | #23 |
+| #29 | Database seeding and book retrieval across environments | | |
+| #30 | Resolve book catalog integration issues | | |
+
+**Next up:** shopping cart, checkout and inventory updates for simulated purchases, followed by integration tests and Thymeleaf pages.
+
 ## Authors
 - Thomas Selwyn (101183163)
-- Kemal Sogut
+- Kemal Sogut (101280677)
 - Sam Touma (101033509)
 - Cameron Greer (101309871)
-- Nitish Grover
+- Nitish Grover (101324174)
 
+
+### Database Schema
+
+![Database schema](https://i.devil.wtf/2026/xKZzvWQfDkUvTCV4)
 
 ### Database Seeding
 
