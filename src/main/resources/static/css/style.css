@@ -1,0 +1,36 @@
+body { font-family: system-ui, sans-serif; margin: 0; background: #f7f7f5; color: #222; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 16px; }
+
+.site-header { display: flex; gap: 16px; align-items: center; flex-wrap: wrap;
+    padding: 12px 16px; background: #232f3e; }
+
+.site-header a { color: #fff; text-decoration: none; }
+
+.logo { font-weight: 700; font-size: 1.3rem; }
+
+.search-form { display: flex; gap: 6px; margin-left: auto; }
+
+.search-form.large { margin: 16px 0; }
+
+.search-form input { padding: 6px 10px; min-width: 220px; }
+
+.book-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+
+.book-card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
+
+.book-card h3 { margin: 0 0 4px; font-size: 1.05rem; }
+
+.author { color: #666; margin: 0 0 8px; }
+
+.price { font-weight: 700; color: #b12704; }
+
+.stock { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: .85rem; }
+
+.in-stock { background: #e6f4ea; color: #1e7e34; }
+
+.out-of-stock { background: #fdecea; color: #b3261e; }
+
+.book-detail { display: flex; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+
+.book-detail img { max-width: 220px; border-radius: 6px; }
