@@ -70,10 +70,6 @@ duplicate ISBNs when the script is executed repeatedly.
 The in-memory H2 database resets when the application stops.
 Sample books are automatically reloaded on the next startup.
 
-To run the application locally:
-
-.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=local"
-
 The database can be inspected at:
 http://localhost:8080/h2-console
 
