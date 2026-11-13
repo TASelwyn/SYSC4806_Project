@@ -30,6 +30,7 @@ public class User {
     @Column(nullable = false)
     private RoleType role = RoleType.ROLE_USER;
 
+    @Transient
     public String getFullName() {
         return firstName + " " + lastName;
     }

@@ -1,5 +1,6 @@
 package tech.selwyn.sysc4806project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,12 +18,13 @@ import java.util.UUID;
 @ToString
 @Builder
 public class Cart {
+    /**
+     * Cart owner's user id
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
-
     @Column(nullable = false, unique = true)
-    private UUID userUuid;
+    @JsonIgnore
+    private UUID userId;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
@@ -36,6 +38,22 @@ public class Cart {
 
         findItem(book.getId()).ifPresentOrElse(
                 item -> item.setQuantity(item.getQuantity() + quantity),
+                () -> items.add(CartItem.builder().cart(this).book(book).quantity(quantity).build()));
+    }
+
+    /**
+     * Sets how many copies of a book are in the cart. 0 removes the book.
+     */
+    public void setBookQuantity(Book book, int quantity) {
+        if (quantity < 0) throw new IllegalArgumentException("Quantity must not be negative");
+
+        if (quantity == 0) {
+            removeBook(book.getId());
+            return;
+        }
+
+        findItem(book.getId()).ifPresentOrElse(
+                item -> item.setQuantity(quantity),
                 () -> items.add(CartItem.builder().cart(this).book(book).quantity(quantity).build()));
     }
 

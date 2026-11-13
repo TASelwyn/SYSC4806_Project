@@ -8,12 +8,12 @@ import java.math.BigDecimal;
 /**
  * Read-only view of one cart line returned to clients
  */
-public record CartItemDTO(Long bookId, String isbn, String title, String author,
+public record CartItemDto(Long bookId, String isbn, String title, String author,
                           BigDecimal unitPrice, int quantity, BigDecimal subtotal) {
 
-    public static CartItemDTO from(CartItem item) {
+    public static CartItemDto from(CartItem item) {
         Book book = item.getBook();
-        return new CartItemDTO(
+        return new CartItemDto(
                 book.getId(),
                 book.getIsbn(),
                 book.getTitle(),
