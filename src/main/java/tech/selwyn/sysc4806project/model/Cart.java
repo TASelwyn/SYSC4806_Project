@@ -31,17 +31,6 @@ public class Cart {
     private List<CartItem> items = new ArrayList<>();
 
     /**
-     * Adds copies of a book, merging with an existing line if the book is already in the cart.
-     */
-    public void addBook(Book book, int quantity) {
-        if (quantity <= 0) throw new IllegalArgumentException("Quantity must be positive");
-
-        findItem(book.getId()).ifPresentOrElse(
-                item -> item.setQuantity(item.getQuantity() + quantity),
-                () -> items.add(CartItem.builder().cart(this).book(book).quantity(quantity).build()));
-    }
-
-    /**
      * Sets how many copies of a book are in the cart. 0 removes the book.
      */
     public void setBookQuantity(Book book, int quantity) {
@@ -62,10 +51,6 @@ public class Cart {
      */
     public void removeBook(Long bookId) {
         items.removeIf(item -> item.getBook().getId().equals(bookId));
-    }
-
-    public void clear() {
-        items.clear();
     }
 
     public BigDecimal getTotal() {
