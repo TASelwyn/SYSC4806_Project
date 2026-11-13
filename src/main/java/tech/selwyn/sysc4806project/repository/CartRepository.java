@@ -9,11 +9,11 @@ import java.util.UUID;
 /**
  * Repository for managing shopping carts
  */
-public interface CartRepository extends JpaRepository<Cart, Long> {
+public interface CartRepository extends JpaRepository<Cart, UUID> {
 
-    Optional<Cart> findByUserUuid(UUID userUuid);
+    Optional<Cart> findByUserId(UUID userId);
 
-    long deleteByUserUuid(UUID userUuid);
+    long deleteByUserId(UUID userId);
 
-    boolean existsByUserUuid(UUID userUuid);
+    boolean existsByUserId(UUID userId);
 }
