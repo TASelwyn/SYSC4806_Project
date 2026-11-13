@@ -37,11 +37,14 @@ class CartControllerTest {
     @MockitoBean
     private CartService cartService;
 
+    // can be anything tbf
     private final UUID userId = UUID.fromString("9e7a3dd3-01cf-4fbb-a9f6-95fde15d80cb");
+    private final UUID hobbitBookId = UUID.fromString("ec1efac6-f64c-42d9-916e-a1bff9471cc2");
+
     private final String url = "/api/cart/" + userId;
 
     private final CartItemDto hobbitLine = new CartItemDto(
-            1L, "9780261103573", "The Hobbit", "J.R.R. Tolkien",
+            hobbitBookId, "9780261103573", "The Hobbit", "J.R.R. Tolkien",
             new BigDecimal("15.99"), 2, new BigDecimal("31.98"));
 
     private final CartDto emptyCart = new CartDto(List.of(), BigDecimal.ZERO);
@@ -57,7 +60,7 @@ class CartControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.items", hasSize(1)))
-                .andExpect(jsonPath("$.items[0].bookId").value(1))
+                .andExpect(jsonPath("$.items[0].bookId").value("ec1efac6-f64c-42d9-916e-a1bff9471cc2"))
                 .andExpect(jsonPath("$.items[0].title").value("The Hobbit"))
                 .andExpect(jsonPath("$.items[0].quantity").value(2))
                 .andExpect(jsonPath("$.items[0].subtotal").value(31.98))
@@ -86,28 +89,28 @@ class CartControllerTest {
 
     @Test
     void patchSetsBookQuantity() throws Exception {
-        when(cartService.updateItem(userId, new UpdateCartRequestDto(1L, 2))).thenReturn(cartWithHobbit);
+        when(cartService.updateItem(userId, new UpdateCartRequestDto(hobbitBookId, 2))).thenReturn(cartWithHobbit);
 
         mockMvc.perform(patch(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                { "bookId": 1, "quantity": 2 }
+                                { "bookId": "ec1efac6-f64c-42d9-916e-a1bff9471cc2", "quantity": 2 }
                                 """))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.items[0].quantity").value(2))
                 .andExpect(jsonPath("$.total").value(31.98));
 
-        verify(cartService).updateItem(userId, new UpdateCartRequestDto(1L, 2));
+        verify(cartService).updateItem(userId, new UpdateCartRequestDto(hobbitBookId, 2));
     }
 
     @Test
     void patchWithZeroQuantityRemovesBook() throws Exception {
-        when(cartService.updateItem(userId, new UpdateCartRequestDto(1L, 0))).thenReturn(emptyCart);
+        when(cartService.updateItem(userId, new UpdateCartRequestDto(hobbitBookId, 0))).thenReturn(emptyCart);
 
         mockMvc.perform(patch(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                { "bookId": 1, "quantity": 0 }
+                                { "bookId": "ec1efac6-f64c-42d9-916e-a1bff9471cc2", "quantity": 0 }
                                 """))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.items", empty()));
@@ -118,7 +121,7 @@ class CartControllerTest {
         mockMvc.perform(patch(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                { "bookId": 1, "quantity": -1 }
+                                { "bookId": "ec1efac6-f64c-42d9-916e-a1bff9471cc2", "quantity": -1 }
                                 """))
                 .andExpect(status().isBadRequest());
 
@@ -131,10 +134,11 @@ class CartControllerTest {
         when(cartService.updateItem(any(), any()))
                 .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "Book not found"));
 
+        // This book id is purposefully not anywhere else.
         mockMvc.perform(patch(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                { "bookId": 999, "quantity": 1 }
+                                { "bookId": "e2d62df8-df10-438b-9e66-e95adce50d29", "quantity": 1 }
                                 """))
                 .andExpect(status().isNotFound());
     }
@@ -147,7 +151,7 @@ class CartControllerTest {
         mockMvc.perform(patch(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                { "bookId": 1, "quantity": 50 }
+                                { "bookId": "ec1efac6-f64c-42d9-916e-a1bff9471cc2", "quantity": 50 }
                                 """))
                 .andExpect(status().isConflict());
     }

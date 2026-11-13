@@ -49,7 +49,7 @@ public class Cart {
     /**
      * Removes a book from the cart entirely.
      */
-    public void removeBook(Long bookId) {
+    public void removeBook(UUID bookId) {
         items.removeIf(item -> item.getBook().getId().equals(bookId));
     }
 
@@ -59,7 +59,7 @@ public class Cart {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    private Optional<CartItem> findItem(Long bookId) {
+    private Optional<CartItem> findItem(UUID bookId) {
         return items.stream()
                 .filter(item -> item.getBook().getId().equals(bookId))
                 .findFirst();
