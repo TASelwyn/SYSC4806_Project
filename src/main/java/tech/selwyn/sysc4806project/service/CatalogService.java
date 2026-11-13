@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Sort;
+import java.util.UUID;
 
 @Service
 public class CatalogService {
@@ -26,7 +27,7 @@ public class CatalogService {
     /**
      * Returns a book by its ID
      */
-    public Optional<Book> getBookById(Long id) {
+    public Optional<Book> getBookById(UUID id) {
         return bookRepository.findById(id);
     }
 

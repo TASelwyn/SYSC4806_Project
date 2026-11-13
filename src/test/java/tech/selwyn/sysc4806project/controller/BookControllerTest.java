@@ -11,6 +11,7 @@ import tech.selwyn.sysc4806project.service.CatalogService;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyBoolean;
@@ -128,9 +129,13 @@ class BookControllerTest {
 
     @Test
     void bookDetailsShowsBook() throws Exception {
-        when(catalogService.getBookById(1L)).thenReturn(Optional.of(hobbit));
 
-        mockMvc.perform(get("/books/1"))
+        UUID bookId = UUID.randomUUID();
+
+        when(catalogService.getBookById(bookId))
+                .thenReturn(Optional.of(hobbit));
+
+        mockMvc.perform(get("/books/" + bookId))
                 .andExpect(status().isOk())
                 .andExpect(view().name("books/detail"))
                 .andExpect(model().attribute("book", hobbit))
@@ -140,9 +145,13 @@ class BookControllerTest {
 
     @Test
     void unknownBookIdReturns404Page() throws Exception {
-        when(catalogService.getBookById(999L)).thenReturn(Optional.empty());
 
-        mockMvc.perform(get("/books/999"))
+        UUID bookId = UUID.randomUUID();
+
+        when(catalogService.getBookById(bookId))
+                .thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/books/" + bookId))
                 .andExpect(status().isNotFound())
                 .andExpect(view().name("error/book-not-found"))
                 .andExpect(content().string(containsString("Book not found")));

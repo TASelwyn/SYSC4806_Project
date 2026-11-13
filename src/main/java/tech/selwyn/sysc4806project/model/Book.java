@@ -3,6 +3,8 @@ package tech.selwyn.sysc4806project.model;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import lombok.*;
+import java.util.UUID;
+import jakarta.validation.constraints.PositiveOrZero;
 
 /**
  * Represents a book in the Amazin Online Bookstore
@@ -21,9 +23,9 @@ public class Book {
 
     // Unique database identifier generated automatically.
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Setter(AccessLevel.NONE)
-    private Long id;
+    private UUID id;
 
     @Column(nullable = false, unique = true, length = 13)
     private String isbn;
@@ -45,7 +47,7 @@ public class Book {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    @Column(nullable = false)
+    @PositiveOrZero
     private int stockQuantity;
 
 

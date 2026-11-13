@@ -7,6 +7,7 @@ import tech.selwyn.sysc4806project.model.Book;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import java.util.UUID;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ import java.util.List;
  * Repository for managing and searching bookstore records
  * Standard CRUD operations are provided by Spring Data JPA
  */
-public interface BookRepository extends JpaRepository<Book, Long> {
+public interface BookRepository extends JpaRepository<Book, UUID> {
 
     /**
      * Finds books by partial title, ignoring case

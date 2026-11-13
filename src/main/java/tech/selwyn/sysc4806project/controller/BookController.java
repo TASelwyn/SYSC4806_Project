@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import jakarta.servlet.http.HttpServletResponse;
 import tech.selwyn.sysc4806project.model.Book;
 import java.util.Optional;
+import java.util.UUID;
+
 @Controller
 @RequestMapping("/books")
 public class BookController {
@@ -53,7 +55,7 @@ public class BookController {
 
     // GET /books/5  -> shows one book, or a "not found" page
     @GetMapping("/{id}")
-    public String bookDetails(@PathVariable Long id, Model model, HttpServletResponse response) {
+    public String bookDetails(@PathVariable UUID id, Model model, HttpServletResponse response) {
         Optional<Book> book = catalogService.getBookById(id);
 
         if (book.isEmpty()) {
