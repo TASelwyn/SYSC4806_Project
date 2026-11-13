@@ -13,7 +13,6 @@ import tech.selwyn.sysc4806project.model.Cart;
 import tech.selwyn.sysc4806project.repository.BookRepository;
 import tech.selwyn.sysc4806project.repository.CartRepository;
 
-import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,11 +20,6 @@ import java.util.UUID;
 public class CartService {
     private final BookRepository bookRepo;
     private final CartRepository cartRepo;
-
-    @Transactional(readOnly = true)
-    public Optional<CartDto> findByUserId(UUID userId) {
-        return cartRepo.findByUserId(userId).map(CartDto::from);
-    }
 
     @Transactional
     public CartDto getOrCreateCart(UUID userId) {
