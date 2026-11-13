@@ -1,9 +1,9 @@
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780134685991',
     'Effective Java',
     'Joshua Bloch',
@@ -18,9 +18,10 @@ SELECT
 );
 
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780132350884',
     'Clean Code',
     'Robert C. Martin',
@@ -34,12 +35,11 @@ SELECT
     WHERE isbn = '9780132350884'
 );
 
-
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780201616224',
     'The Pragmatic Programmer',
     'Andrew Hunt and David Thomas',
@@ -49,14 +49,15 @@ SELECT
     54.99,
     8
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780201616224'
+    SELECT 1 FROM books
+    WHERE isbn = '9780201616224'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780201633610',
     'Design Patterns',
     'Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides',
@@ -66,14 +67,15 @@ SELECT
     64.99,
     6
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780201633610'
+    SELECT 1 FROM books
+    WHERE isbn = '9780201633610'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780134494166',
     'Clean Architecture',
     'Robert C. Martin',
@@ -83,14 +85,15 @@ SELECT
     44.99,
     12
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780134494166'
+    SELECT 1 FROM books
+    WHERE isbn = '9780134494166'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9781491950357',
     'Designing Data-Intensive Applications',
     'Martin Kleppmann',
@@ -100,14 +103,15 @@ SELECT
     69.99,
     4
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9781491950357'
+    SELECT 1 FROM books
+    WHERE isbn = '9781491950357'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780131103627',
     'The C Programming Language',
     'Brian Kernighan and Dennis Ritchie',
@@ -117,14 +121,15 @@ SELECT
     39.99,
     15
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780131103627'
+    SELECT 1 FROM books
+    WHERE isbn = '9780131103627'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780596007126',
     'Head First Design Patterns',
     'Eric Freeman and Elisabeth Robson',
@@ -134,14 +139,15 @@ SELECT
     49.99,
     3
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780596007126'
+    SELECT 1 FROM books
+    WHERE isbn = '9780596007126'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780596009205',
     'Head First Java',
     'Kathy Sierra and Bert Bates',
@@ -151,14 +157,15 @@ SELECT
     34.99,
     9
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780596009205'
+    SELECT 1 FROM books
+    WHERE isbn = '9780596009205'
 );
 
-
 INSERT INTO books
-(isbn, title, author, publisher, description,
+(id, isbn, title, author, publisher, description,
  image_url, price, stock_quantity)
 SELECT
+    RANDOM_UUID(),
     '9780262033848',
     'Introduction to Algorithms',
     'Thomas Cormen, Charles Leiserson, Ronald Rivest and Clifford Stein',
@@ -168,6 +175,6 @@ SELECT
     89.99,
     0
     WHERE NOT EXISTS (
-    SELECT 1 FROM books WHERE isbn = '9780262033848'
+    SELECT 1 FROM books
+    WHERE isbn = '9780262033848'
 );
-

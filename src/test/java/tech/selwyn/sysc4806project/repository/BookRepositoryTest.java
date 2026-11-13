@@ -10,6 +10,7 @@ import tech.selwyn.sysc4806project.model.Book;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -96,12 +97,12 @@ class BookRepositoryTest {
 
     /**
      * Check that searching for a nonexistent book ID
-     * returns an empty Optional
+     * returns an empty Optional.
      */
     @Test
     void testFindNonexistentBook() {
 
-        assertTrue(bookRepository.findById(Long.MAX_VALUE)
+        assertTrue(bookRepository.findById(UUID.randomUUID())
                 .isEmpty());
     }
 
@@ -172,7 +173,7 @@ class BookRepositoryTest {
                 "9780134685991", "Effective Java",
                 "Joshua Bloch", "49.99"));
 
-        Long bookId = saved.getId();
+        UUID bookId = saved.getId();
 
         saved.setPrice(new BigDecimal("59.99"));
         saved.setStockQuantity(5);
@@ -200,7 +201,7 @@ class BookRepositoryTest {
                 "9780134685991", "Effective Java",
                 "Joshua Bloch", "49.99"));
 
-        Long bookId = saved.getId();
+        UUID bookId = saved.getId();
 
         bookRepository.deleteById(bookId);
         bookRepository.flush();

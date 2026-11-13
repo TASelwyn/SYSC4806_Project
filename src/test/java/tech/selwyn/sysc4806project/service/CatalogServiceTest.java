@@ -12,6 +12,7 @@ import tech.selwyn.sysc4806project.repository.BookRepository;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -48,9 +49,11 @@ public class CatalogServiceTest {
                 .stockQuantity(5)
                 .build();
 
-        when(bookRepository.findById(1L)).thenReturn(Optional.of(book));
+        UUID bookId = new UUID(0L, 1L);
 
-        Optional<Book> result = catalogService.getBookById(1L);
+        when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
+
+        Optional<Book> result = catalogService.getBookById(bookId);
 
         assertTrue(result.isPresent());
         assertEquals(book, result.get());
@@ -58,9 +61,11 @@ public class CatalogServiceTest {
 
     @Test
     void getBookByIdReturnsEmptyWhenNotFound() {
-        when(bookRepository.findById(123456789L)).thenReturn(Optional.empty());
 
-        Optional<Book> result = catalogService.getBookById(123456789L);
+        UUID bookId = new UUID(0L, 123456789L);
+        when(bookRepository.findById(bookId)).thenReturn(Optional.empty());
+
+        Optional<Book> result = catalogService.getBookById(bookId);
 
         assertTrue(result.isEmpty());
     }
