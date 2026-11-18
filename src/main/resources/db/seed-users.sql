@@ -3,7 +3,7 @@
 -- in the browser's localStorage still matches after the app restarts.
 
 INSERT INTO users (id, first_name, last_name, email, role)
-SELECT '00000000-0000-0000-0000-000000000001', 'Admin', 'User', 'admin@amazin.com', 'ROLE_ADMIN'
+SELECT '00000000-0000-0000-0000-000000000001', 'Olivia', 'Brown', 'admin@amazin.com', 'ROLE_ADMIN'
 WHERE NOT EXISTS (SELECT 1 FROM users WHERE email = 'admin@amazin.com');
 
 INSERT INTO users (id, first_name, last_name, email, role)
