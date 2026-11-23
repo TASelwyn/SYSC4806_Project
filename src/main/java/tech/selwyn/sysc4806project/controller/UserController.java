@@ -21,7 +21,7 @@ public class UserController {
 
     /**
      * GET /api/users
-     * Returns all users as JSON: [{"id": "...", "role": "ROLE_USER", "firstName": "Alice"}, ...]
+     * Returns all users as JSON
      */
     @GetMapping
     public ResponseEntity<List<UserDto>> getUsers() {

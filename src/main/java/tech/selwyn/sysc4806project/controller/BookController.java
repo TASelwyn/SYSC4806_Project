@@ -22,38 +22,37 @@ public class BookController {
 
     private final CatalogService catalogService;
 
-    // Spring passes in Cameron's service automatically (constructor injection)
     public BookController(CatalogService catalogService) {
         this.catalogService = catalogService;
     }
 
-    // GET /books  -> shows every book
+
     @GetMapping
     public String listBooks(Model model) {
         model.addAttribute("books", catalogService.getAllBooks());
         model.addAttribute("query", "");
-        return "books/list";   // Kemal's template: templates/books/list.html
+        return "books/list";
     }
-    // GET /books/search?q=tolkien&inStock=true&sortByPrice=true
+
     @GetMapping("/search")
     public String searchBooks(@RequestParam(name = "q", required = false) String query,
                               @RequestParam(defaultValue = "false") boolean inStock,
                               @RequestParam(defaultValue = "false") boolean sortByPrice,
                               Model model) {
-        // Empty search box: just show all books instead of an error
+
         if (query == null || query.isBlank()) {
             return "redirect:/books";
         }
 
         String trimmed = query.trim();
         model.addAttribute("books", catalogService.searchBooks(trimmed, inStock, sortByPrice));
-        model.addAttribute("query", trimmed);   // so the search box keeps the text
+        model.addAttribute("query", trimmed);
         model.addAttribute("inStock", inStock);
         model.addAttribute("sortByPrice", sortByPrice);
-        return "books/list";   // same page as the list, just filtered
+        return "books/list";
     }
 
-    // GET /books/5  -> shows one book, or a "not found" page
+
     @GetMapping("/{id}")
     public String bookDetails(@PathVariable UUID id, Model model, HttpServletResponse response) {
         Optional<Book> book = catalogService.getBookById(id);
@@ -68,7 +67,6 @@ public class BookController {
         return "books/detail";
     }
 
-    // GET /books/abc  -> "abc" isn't a number, show the same "not found" page
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleInvalidId() {

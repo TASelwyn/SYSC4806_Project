@@ -28,8 +28,8 @@ class UserControllerTest {
 
     @Test
     void getUsersReturnsIdRoleAndFirstName() throws Exception {
-        UUID adminId = UUID.fromString("00000000-0000-0000-0000-000000000001");
-        UUID aliceId = UUID.fromString("00000000-0000-0000-0000-000000000002");
+        UUID adminId = UUID.fromString("ff471d55-aa94-4301-9476-947f77914498");
+        UUID aliceId = UUID.fromString("e698b2f8-50e1-4e39-9e74-19ac607f75d4");
         when(userService.getAllUsers()).thenReturn(List.of(
                 new UserDto(adminId, RoleType.ROLE_ADMIN, "Olivia"),
                 new UserDto(aliceId, RoleType.ROLE_USER, "Alice")));
