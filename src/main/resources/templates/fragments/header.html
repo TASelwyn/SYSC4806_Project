@@ -4,6 +4,13 @@
 <header th:fragment="header" class="site-header">
     <a th:href="@{/}" class="logo">Amazin</a>
     <nav><a th:href="@{/books}">All books</a></nav>
+    <label class="user-toggle">
+        <span>Logged in as</span>
+        <select id="user-select">
+            <option value="">Guest</option>
+        </select>
+    </label>
+    <script th:src="@{/js/user-toggle.js}" defer></script>
     <form th:action="@{/books/search}" method="get" class="search-form">
         <input type="text" name="q" th:value="${query}" placeholder="Search title or author">
         <button type="submit">Search</button>
