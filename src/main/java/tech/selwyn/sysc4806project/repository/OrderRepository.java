@@ -10,8 +10,8 @@ import java.util.UUID;
 /**
  * Repository for completed order
  */
-public interface OrderRepository extends JpaRepository<Order, UUID> {
 
+public interface OrderRepository extends JpaRepository<Order, UUID> {
     /**
      * All orders a user has placed
      */

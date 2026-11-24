@@ -11,6 +11,7 @@ import java.util.UUID;
 /**
  * Unlike CartItem, the price is copied so later price changes don't alter past orders.
  */
+
 @Entity
 @Table(name = "order_items")
 @NoArgsConstructor
@@ -33,10 +34,8 @@ public class OrderItem {
     @JoinColumn(name = "book_id", nullable = false)
     private Book book;
 
-    
     @Column(nullable = false)
     private String title;
-
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal unitPrice;
@@ -49,7 +48,6 @@ public class OrderItem {
         return unitPrice.multiply(BigDecimal.valueOf(quantity));
     }
 
-   
     public static OrderItem fromCartItem(Order order, CartItem cartItem) {
         Book book = cartItem.getBook();
         return OrderItem.builder()

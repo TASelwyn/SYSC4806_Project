@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 /**
  * Simulated checkout: turns a user's cart into a stored order and takes the books out of stock.
  */
+
 @Service
 @AllArgsConstructor
 public class CheckoutService {
@@ -41,12 +42,12 @@ public class CheckoutService {
     /**
      * Places an order if all items in stock.
      */
+
     @Transactional
     public OrderDto checkout(UUID userId) {
         Cart cart = cartRepo.findByUserId(userId)
                 .filter(c -> !c.getItems().isEmpty())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cart is empty"));
-
 
         List<StockIssueDto> issues = findStockIssues(cart);
         if (!issues.isEmpty()) {
@@ -59,7 +60,6 @@ public class CheckoutService {
                 .total(cart.getTotal())
                 .build();
 
-
         for (CartItem item : cart.getItems()) {
             int updated = bookRepo.decrementStock(item.getBook().getId(), item.getQuantity());
             if (updated == 0) {
@@ -70,7 +70,6 @@ public class CheckoutService {
         }
 
         Order saved = orderRepo.save(order);
-
 
         cart.getItems().clear();
 
@@ -90,8 +89,8 @@ public class CheckoutService {
     /**
      * One order, only if it belongs to the user
      *
-
      */
+
     @Transactional(readOnly = true)
     public OrderDto getOrder(UUID userId, UUID orderId) {
         return orderRepo.findByIdAndUserId(orderId, userId)

@@ -15,18 +15,17 @@ import java.util.UUID;
 /**
  * REST endpoints for the simulated checkout and a user's order history.
  */
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api")
 public class CheckoutController {
     private final CheckoutService checkoutService;
 
-
     @GetMapping("/checkout/{userId}/validate")
     public ResponseEntity<List<StockIssueDto>> validate(@PathVariable UUID userId) {
         return ResponseEntity.ok(checkoutService.validate(userId));
     }
-
 
     @PostMapping("/checkout/{userId}")
     public ResponseEntity<OrderDto> checkout(@PathVariable UUID userId) {

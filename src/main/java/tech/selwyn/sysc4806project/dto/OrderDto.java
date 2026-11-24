@@ -10,6 +10,7 @@ import java.util.UUID;
 /**
  * A order returned to clients
  */
+
 public record OrderDto(UUID id, UUID userId, Instant createdAt,
                        List<OrderItemDto> items, BigDecimal total) {
 

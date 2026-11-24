@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public record OrderItemDto(UUID bookId, String title, BigDecimal unitPrice,
                            int quantity, BigDecimal subtotal) {
-
     public static OrderItemDto from(OrderItem item) {
         return new OrderItemDto(
                 item.getBook().getId(),
