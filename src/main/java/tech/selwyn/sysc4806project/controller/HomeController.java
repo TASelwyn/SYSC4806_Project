@@ -14,7 +14,7 @@ public class HomeController {
         this.catalogService = catalogService;
     }
 
-    // GET /  -> homepage with up to 4 featured books
+
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("books", catalogService.getAllBooks().stream().limit(4).toList());

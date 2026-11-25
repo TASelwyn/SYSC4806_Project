@@ -55,6 +55,6 @@ class UserSeedIntegrationTest {
         mockMvc.perform(get("/api/users"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[?(@.role == 'ROLE_ADMIN')].id")
-                        .value(hasItem("00000000-0000-0000-0000-000000000001")));
+                        .value(hasItem("ff471d55-aa94-4301-9476-947f77914498")));
     }
 }

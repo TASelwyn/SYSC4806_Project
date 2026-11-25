@@ -3,6 +3,7 @@ package tech.selwyn.sysc4806project.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import tech.selwyn.sysc4806project.model.Book;
+import org.springframework.data.jpa.repository.Modifying;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
@@ -57,4 +58,19 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
             @Param("inStockOnly") boolean inStockOnly,
             Sort sort
     );
+
+    /**
+     * Takes copies of a book out of stock, but only if enough are left.
+     * The check and the update happen in one SQL statement, so two buyers
+     * can't both take the last copy.
+     *
+     * @return 1 if the stock was reduced, 0 if there wasn't enough stock
+     */
+    @Modifying
+    @Query("""
+        UPDATE Book b
+        SET b.stockQuantity = b.stockQuantity - :quantity
+        WHERE b.id = :id AND b.stockQuantity >= :quantity
+    """)
+    int decrementStock(@Param("id") UUID id, @Param("quantity") int quantity);
 }
