@@ -25,6 +25,62 @@
     window.addEventListener("pageshow", updateCartLink);
 })();
 
+(function () {
+    const addButton = document.getElementById("add-to-cart-button");
+    const message = document.getElementById("add-to-cart-message");
+
+    if (!addButton || !message) return;
+
+    addButton.addEventListener("click", async function () {
+        const userId = window.Amazin?.getCurrentUserId();
+        const bookId = addButton.dataset.bookId;
+
+        if (!userId) {
+            message.textContent = "Please Select a User First";
+            return;
+        }
+
+        try {
+            addButton.disabled = true;
+            message.textContent = "Adding to Cart...";
+
+            const cartResponse = await fetch(`/api/cart/${userId}`);
+            if (!cartResponse.ok) {
+                throw new Error("Unable to Retrieve Cart");
+            }
+
+            const cart = await cartResponse.json();
+
+            const existingItem = cart.items.find(item => item.bookId === bookId);
+
+            const newQuantity = existingItem ? existingItem.quantity + 1 : 1;
+
+            const updateResponse = await fetch(`/api/cart/${userId}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    bookId: bookId,
+                    quantity: newQuantity
+                })
+            })
+
+            if (!updateResponse.ok) {
+                throw new Error("Unable to Add Book to Cart");
+            }
+
+            message.textContent = "Book Successfully Added to Your Cart";
+
+        } catch (error) {
+            message.textContent = error.message;
+            console.error(error);
+        } finally {
+            addButton.disabled = false;
+        }
+    });
+})();
+
 const cartItemsContainer = document.getElementById("cart-items");
 const subtotalElement = document.getElementById("subtotal");
 const totalElement = document.getElementById("total");
