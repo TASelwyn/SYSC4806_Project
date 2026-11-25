@@ -56,6 +56,8 @@ if (cartItemsContainer) {
     async function loadCart() {
         const userId = getCurrentUserId();
 
+        console.log("Loading Cart for User: ", userId)
+
         if (!userId) {
             showMessage("Please select a user first.", true);
             return;

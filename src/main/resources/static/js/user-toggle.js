@@ -7,7 +7,6 @@
 (function () {
     const STORAGE_KEY = 'amazin.currentUserId';
     const select = document.getElementById('user-select');
-    if (!select) return;
 
     function getSavedUserId() {
         try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
@@ -49,10 +48,12 @@
             console.error('Could not load users for the user toggle:', error);
         });
 
-    select.addEventListener('change', function () {
-        saveUserId(select.value || null);
-        window.dispatchEvent(new CustomEvent('amazin:userchange', { detail: { userId: select.value || null } }));
-    });
+    if (select) {
+        select.addEventListener('change', function () {
+            saveUserId(select.value || null);
+            window.dispatchEvent(new CustomEvent('amazin:userchange', { detail: { userId: select.value || null } }));
+        });
+    }
 
     window.Amazin = window.Amazin || {};
     window.Amazin.getCurrentUserId = getSavedUserId;

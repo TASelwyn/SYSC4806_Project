@@ -9,15 +9,8 @@
     <link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
 <body>
-<header class="navbar">
-    <div class="navbar-content">
-        <a th:href="@{/}" class="strone-name">Amazin</a>
-
-        <nav>
-            <a th:href="@{/books}">Browse Books</a>
-            <a th:href="@{/cart}" class="cart-link">Shopping Cart</a>
-        </nav>
-    </div>
+<header class="cart-navbar">
+    <a th:href="@{/}" class="logo">Amazin</a>
 </header>
 
 <main class="cart-container">
@@ -37,7 +30,7 @@
         <aside class="cart-summary">
             <h2>Order Summary</h2>
 
-            <div class="summary=row">
+            <div class="summary-row">
                 <span>Subtotal</span>
                 <span id="subtotal">$0.00</span>
             </div>
@@ -69,9 +62,7 @@
     <p>Amazin</p>
 </footer>
 
-<script th:src="@{/js/cart.js}"></script>
-
+<script th:src="@{/js/user-toggle.js}" defer></script>
+<script th:src="@{/js/cart.js}" defer></script>
 </body>
-</html>
-
 </html>
