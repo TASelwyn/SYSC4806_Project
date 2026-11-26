@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Amazin</title>
+    <link rel="stylesheet" th:href="@{/css/checkout.css}">
+</head>
+<body>
+
+<header class="checkout-nav">
+    <div class="checkout-nav-inner">
+        <a th:href="@{/}" class="brand">Amazin</a>
+        <a th:href="@{/cart/{id}(id=${userId})}" class="back-link">
+            Back to cart
+        </a>
+    </div>
+</header>
+
+<div class="checkout-banner">
+    <div class="page-container">
+        <h1>Checkout</h1>
+        <p>Review your delivery details and place your order.</p>
+    </div>
+</div>
+
+<main class="page-container checkout-grid"
+      id="checkout-page"
+      th:attr="data-user-id=${userId}">
+
+    <section class="checkout-main">
+
+        <div id="checkout-message"
+             class="message"
+             role="status"
+             aria-live="polite">
+            Loading your checkout...
+        </div>
+
+        <article class="panel">
+            <h2>Delivery address</h2>
+            <p class="eyebrow">Randomly generated demo address</p>
+
+            <p id="delivery-address" class="detail-value">—</p>
+
+            <p class="arrival">
+                Arrives by
+                <strong id="delivery-date">—</strong>
+            </p>
+        </article>
+
+        <article class="panel">
+            <h2>Payment method</h2>
+            <p class="eyebrow">
+                Simulated payment — no actual charge
+            </p>
+
+            <p id="payment-method" class="detail-value">—</p>
+        </article>
+
+        <article class="panel">
+            <h2>Your items</h2>
+            <div id="checkout-items">—</div>
+        </article>
+
+    </section>
+
+    <aside class="panel total-panel">
+        <h2>Order summary</h2>
+
+        <div class="summary-line">
+            <span>Number of items</span>
+            <strong id="checkout-item-count">0</strong>
+        </div>
+
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="checkout-subtotal">$0.00</span>
+        </div>
+
+        <div class="summary-line">
+            <span>HST (13%)</span>
+            <span id="checkout-tax">$0.00</span>
+        </div>
+
+        <hr>
+
+        <div class="summary-line grand-total">
+            <span>Order total</span>
+            <strong id="checkout-total">$0.00</strong>
+        </div>
+
+        <button type="button" id="place-order" disabled>
+            Place Order
+        </button>
+
+        <p class="small-note">
+            Demonstration checkout only.
+            No actual payment will be processed.
+        </p>
+    </aside>
+
+</main>
+
+<script th:src="@{/js/checkout.js}" defer></script>
+</body>
+</html>
