@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Shopping Cart | Amazin</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+</head>
+<body>
+<header th:replace="~{fragments/header :: header}"></header>
+
+<main class="cart-container">
+    <section class="cart-header">
+        <h1>Your Shopping Cart</h1>
+        <p>Review your books before proceeding</p>
+    </section>
+
+    <div id="cart-message" class="cart-message" role="status"></div>
+    <div class="cart-layout">
+
+        <section class="cart-items-section">
+            <div id="cart-items">
+            </div>
+        </section>
+
+        <aside class="cart-summary">
+            <h2>Order Summary</h2>
+
+            <div class="summary-row">
+                <span>Subtotal</span>
+                <span id="subtotal">$0.00</span>
+            </div>
+
+            <div class="summary-row">
+                <span>Shipping</span>
+                <span>Calculated Later</span>
+            </div>
+
+            <hr>
+
+            <div class="summary-row total-row">
+                <span>Total</span>
+                <span id="total">$0.00</span>
+            </div>
+
+            <button id="checkout-btn" type="button">
+                Proceed to Checkout
+            </button>
+
+            <a th:href="@{/books}" class="continue-shopping">
+                Continue Shopping
+            </a>
+        </aside>
+    </div>
+</main>
+
+<footer class="footer">
+    <p>Amazin</p>
+</footer>
+
+<script th:src="@{/js/user-toggle.js}" defer></script>
+<script th:src="@{/js/cart.js}" defer></script>
+</body>
+</html>

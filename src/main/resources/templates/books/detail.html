@@ -21,8 +21,12 @@
                 <dt>Publisher</dt> <dd th:text="${book.publisher} ?: 'Unknown'"></dd>
             </dl>
             <p th:text="${book.description}"></p>
+            <button type="button" id="add-to-cart-button" th:attr="data-book-id=${book.id}">Add to Cart</button>
+            <p id="add-to-cart-message" role="status"></p>
         </div>
     </article>
 </main>
+<script th:src="@{/js/user-toggle.js}" defer></script>
+<script th:src="@{/js/cart.js}" defer></script>
 </body>
 </html>

@@ -38,3 +38,17 @@ body { font-family: system-ui, sans-serif; margin: 0; background: #f7f7f5; color
 .user-toggle { display: flex; align-items: center; gap: 6px; color: #fff; font-size: .9rem; }
 
 .user-toggle select { padding: 4px 8px; border-radius: 4px; }
+
+.cart-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    color: white;
+    text-decoration: none;
+}
+
+.cart-icon svg {
+    width: 24px;
+    height: 24px;
+}
