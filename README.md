@@ -44,11 +44,13 @@ Build & Run the application
 Summary of the [Kanban board](https://github.com/users/TASelwyn/projects) as of 2026-11-26.
 
 ### Todo
-| Issue | Task                 | Assignee    |
-|-------|----------------------|-------------|
-| #50   | Recommended Books    |             |
-| #51   | Recommended Books UI |             |
-| #52   | Admin page           |             |
+| Issue | Task                 | Assignee      |
+|-------|----------------------|---------------|
+| #50   | Recommended Books    | initishgrover |
+| #51   | Recommended Books UI | Kemal-Sogut   |
+| #52   | Admin page           | TASelwyn      |
+| #54   | Admin page UI        | CamGreer      |
+| #56   | Orders UI            | SamTouma8     |
 
 ### In Progress
 Nothing currently in progress.
@@ -56,27 +58,27 @@ Nothing currently in progress.
 ### Done
 (Sorted by issue ID, not completion milestone or workload)
 
-| Issue | Task                                                    | Assignee      | PR  |
-|-------|---------------------------------------------------------|---------------|-----|
-| #1    | Add initial Spring setup                                | TASelwyn      | #2  |
-| #3    | Add Maven CI                                            | TASelwyn      | #4  |
-| #5    | Implement Book JPA entity                               | SamTouma8     | #11 |
-| #6    | Configure H2 database                                   | SamTouma8     | #12 |
-| #7    | Implement BookRepository                                | SamTouma8     | #16 |
-| #8    | Populate sample book data                               | SamTouma8     | #17 |
-| #9    | Write repository and integration tests                  | SamTouma8     | #26 |
-| #10   | Document Database Schema                               | TASelwyn      | #47 |
-| #13   | Azure deployment                                        | TASelwyn      | N/A |
-| #14   | Shopping cart logic                                     | TASelwyn      | #35 |
-| #15   | Checkout controllers/logic                              | Kemal-Sogut   | #41 |
-| #18   | Create Thymeleaf pages                                  | Kemal-Sogut   | #21 |
-| #22   | Book controller: list, search and detail endpoints      | initishgrover | #23 |
-| #29   | Database seeding and book retrieval across environments | SamTouma8     | #17 |
-| #38   | User Toggle                                             | initishgrover | #39 |
-| #40   | Update documentation                                    | TASelwyn      | #47 |
-| #45   | Order Confirmation and Thank You Page                   | SamTouma8     | #46 |
-| #48   | Shopping cart UI                                        | CamGreer | #42 |
-| #49   | Book Catalog Service                                    | CamGreer | #24 |
+| Issue | Task                                                     | Assignee      | PR  |
+|-------|----------------------------------------------------------|---------------|-----|
+| #1    | Add initial Spring setup                                 | TASelwyn      | #2  |
+| #3    | Add Maven CI                                             | TASelwyn      | #4  |
+| #5    | Implement Book JPA entity                                | SamTouma8     | #11 |
+| #6    | Configure H2 database                                    | SamTouma8     | #12 |
+| #7    | Implement BookRepository                                 | SamTouma8     | #16 |
+| #8    | Populate sample book data                                | SamTouma8     | #17 |
+| #9    | Write repository and integration tests                   | SamTouma8     | #26 |
+| #10   | Document Database Schema                                 | TASelwyn      | #47 |
+| #13   | Azure deployment                                         | TASelwyn      | N/A |
+| #14   | Shopping cart logic                                      | TASelwyn      | #35 |
+| #15   | Checkout controllers/logic                               | Kemal-Sogut   | #41 |
+| #18   | Create Thymeleaf pages                                   | Kemal-Sogut   | #21 |
+| #22   | Book controller: list, search and detail endpoints       | initishgrover | #23 |
+| #29   | Database seeding and book retrieval across environments  | SamTouma8     | #17 |
+| #38   | User Toggle                                              | initishgrover | #39 |
+| #40   | Update documentation                                     | TASelwyn      | #47 |
+| #45   | Order Confirmation and Thank You Page                    | SamTouma8     | #46 |
+| #48   | Shopping cart UI                                         | CamGreer      | #42 |
+| #49   | Book Catalog Service                                     | CamGreer      | #24 |
 
 ## Authors
 - Thomas Selwyn (101183163)
