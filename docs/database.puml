@@ -1,0 +1,85 @@
+@startuml database
+
+hide circle
+skinparam linetype ortho
+skinparam class {
+    BackgroundColor White
+    BorderColor #333333
+    ArrowColor #333333
+}
+
+!define PK(x) <b><color:#B8860B>PK</color> x</b>
+!define FK(x) <color:#1E6FBF>FK</color> x
+!define UQ(x) <color:#7B3FA0>UQ</color> x
+
+entity "users" as users {
+    PK(id) : UUID
+    --
+    first_name : VARCHAR(255)
+    last_name : VARCHAR(255)
+    UQ(email) : VARCHAR(255)
+    role : VARCHAR(255)
+}
+
+enum RoleType {
+    ROLE_ADMIN
+    ROLE_USER
+}
+
+entity "books" as books {
+    PK(id) : UUID
+    --
+    UQ(isbn) : VARCHAR(13)
+    title : VARCHAR(255)
+    author : VARCHAR(255)
+    publisher : VARCHAR(255)
+    description : VARCHAR(2000)
+    image_url : VARCHAR(500)
+    price : DECIMAL(10,2)
+    stock_quantity : INT
+}
+
+entity "cart" as cart {
+    PK(user_id) : UUID
+    --
+    items : List<CartItem>
+}
+
+entity "cart_items" as cart_items {
+    PK(id) : UUID
+    --
+    FK(cart_id) : UUID
+    FK(book_id) : UUID
+    quantity : INT
+    ..
+    UNIQUE (cart_id, book_id)
+}
+
+entity "orders" as orders {
+    PK(id) : UUID
+    --
+    user_id : UUID
+    created_at : TIMESTAMP
+    total : DECIMAL(10,2)
+}
+
+entity "order_items" as order_items {
+    PK(id) : UUID
+    --
+    FK(order_id) : UUID
+    FK(book_id) : UUID
+    title : VARCHAR(255)
+    unit_price : DECIMAL(10,2)
+    quantity : INT
+}
+
+cart        ||--o{ cart_items  : cart_id
+books       ||--o{ cart_items  : book_id
+orders      ||--|{ order_items : order_id
+books       ||--o{ order_items : book_id
+
+users       ||..o| cart        : user_id
+users       ||..o{ orders      : user_id
+users .. RoleType : role
+
+@enduml

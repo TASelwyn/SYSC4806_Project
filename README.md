@@ -16,7 +16,9 @@ src/main/
          - repository/      # ORM Repos Interfaces (to talk to db)
          - service/         # Application Logic
    - resources/             # Program Setup
-     - db.changelog/        # Database Seed
+     - db/                  # Database Seed
+     - static/              # Thymeleaf JS/CSS files
+     - templates/           # Thymeleaf HTML templates
      - application.yml      # Spring Boot configuration
 mvnw                        # Maven Runtime
 ```
@@ -81,7 +83,11 @@ Nothing currently in progress.
 
 ### Database Schema
 
-![Database schema](https://i.devil.wtf/2026/xKZzvWQfDkUvTCV4)
+![Database schema](docs/uml.png)
+
+Source: [`docs/database.puml`](docs/database.puml)
+
+Generated using [PlantUML](https://www.plantuml.com/plantuml/uml/)
 
 ### Database Seeding
 
@@ -97,17 +103,10 @@ The seed script contains 10 books with:
 - Prices stored as decimal values
 - Different inventory quantities, including an out-of-stock book
 
-When the `local` Spring profile is active, Spring Boot
-executes the seed script after Hibernate initializes
-the database schema.
-
-Each INSERT statement uses WHERE NOT EXISTS to prevent
-duplicate ISBNs when the script is executed repeatedly.
-
 The in-memory H2 database resets when the application stops.
 Sample books are automatically reloaded on the next startup.
 
-The database can be inspected at:
+When running the project locally, the database can be inspected at:
 http://localhost:8080/h2-console
 
 ## License
