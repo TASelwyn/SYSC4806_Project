@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed | Amazin</title>
+    <link rel="stylesheet" th:href="@{/css/checkout.css}">
+</head>
+<body>
+
+<header class="checkout-nav">
+    <div class="checkout-nav-inner">
+        <a th:href="@{/}" class="brand">Amazin</a>
+        <a th:href="@{/books}" class="back-link">
+            Browse books
+        </a>
+    </div>
+</header>
+
+<div class="checkout-banner">
+    <div class="page-container">
+        <h1>Order Confirmation</h1>
+        <p>Your simulated purchase is complete.</p>
+    </div>
+</div>
+
+<main class="page-container confirmation-wrap"
+      id="confirmation-page"
+      th:attr="data-user-id=${userId},data-order-id=${orderId}">
+
+    <div id="confirmation-message"
+         role="status"
+         aria-live="polite">
+        Loading order details...
+    </div>
+
+    <section class="panel confirmation-panel"
+             id="confirmation-details"
+             hidden>
+
+        <div class="success-mark" aria-hidden="true">✓</div>
+
+        <h2 id="thank-you">Thank you for your order!</h2>
+
+        <p>Your order has been placed successfully.</p>
+
+        <p class="arrival">
+            Latest estimated delivery:
+            <strong id="confirmed-delivery">—</strong>
+        </p>
+
+        <p class="eyebrow" id="order-number"></p>
+
+        <hr>
+
+        <h3>Order Summary</h3>
+
+        <div id="confirmed-items"></div>
+
+        <div class="summary-line">
+            <span>Items</span>
+            <span id="confirmed-item-count">0</span>
+        </div>
+
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span id="confirmed-subtotal">$0.00</span>
+        </div>
+
+        <div class="summary-line">
+            <span>HST (13%)</span>
+            <span id="confirmed-tax">$0.00</span>
+        </div>
+
+        <div class="summary-line grand-total">
+            <span>Total including HST</span>
+            <strong id="confirmed-total">$0.00</strong>
+        </div>
+
+        <p id="confirmed-address" class="small-note"></p>
+        <p id="confirmed-payment" class="small-note"></p>
+
+        <p class="small-note">
+            This is a demonstration checkout.
+            No payment was charged.
+        </p>
+
+        <a th:href="@{/books}" class="primary-link">
+            Continue Shopping
+        </a>
+
+    </section>
+
+</main>
+
+<script th:src="@{/js/checkout.js}" defer></script>
+</body>
+</html>
