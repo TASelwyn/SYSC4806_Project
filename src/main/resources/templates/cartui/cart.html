@@ -6,12 +6,11 @@
 
     <title>Shopping Cart | Amazin</title>
 
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/cart.css}">
 </head>
 <body>
-<header class="cart-navbar">
-    <a th:href="@{/}" class="logo">Amazin</a>
-</header>
+<header th:replace="~{fragments/header :: header}"></header>
 
 <main class="cart-container">
     <section class="cart-header">

@@ -5,7 +5,6 @@
     <a th:href="@{/}" class="logo">Amazin</a>
     <nav>
         <a th:href="@{/books}">All books</a>
-        <a id="cart-link" href="#">My Cart</a>
     </nav>
     <label class="user-toggle">
         <span>Logged in as</span>
@@ -13,12 +12,25 @@
             <option value="">Guest</option>
         </select>
     </label>
-    <script th:src="@{/js/user-toggle.js}" defer></script>
-    <script th:src="@{/js/cart.js}" defer></script>
     <form th:action="@{/books/search}" method="get" class="search-form">
         <input type="text" name="q" th:value="${query}" placeholder="Search title or author">
         <button type="submit">Search</button>
     </form>
+    <a id="cart-link" href="#" class="cart-icon" aria-label="My Cart" title="My Cart">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             width="24"
+             height="24"
+             viewbox="0 0 24 24"
+             fill="none"
+             stroke="currentColor"
+             stroke-width="2"
+             stroke-linecap="round"
+             stroke-linejoin="round">
+             <circle cx="9" cy="21" r="1"></circle>
+             <circle cx="20" cy="21" r="1"></circle>
+             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+    </a>
 </header>
 </body>
 </html>

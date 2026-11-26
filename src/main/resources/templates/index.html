@@ -14,5 +14,7 @@
     <div th:replace="~{fragments/books :: grid(${books})}"></div>
     <a th:href="@{/books}">Browse all books →</a>
 </main>
+<script th:src="@{/js/user-toggle.js}" defer></script>
+<script th:src="@{/js/cart.js}" defer></script>
 </body>
 </html>
