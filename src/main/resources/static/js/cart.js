@@ -308,11 +308,22 @@ if (cartItemsContainer) {
         }
     });
 
+
     if (checkoutButton) {
         checkoutButton.addEventListener("click", () => {
-            alert("Checkout functionality has not been implemented yet");
+            const userId = getCurrentUserId();
+
+            if (!userId) {
+                showMessage("Please select a user first.", true);
+                return;
+            }
+
+            window.location.assign(
+                `/checkout/${encodeURIComponent(userId)}`
+            );
         });
     }
+
 
     window.addEventListener("amazin:userchange", loadCart);
 
