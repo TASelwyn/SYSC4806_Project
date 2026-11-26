@@ -41,37 +41,42 @@ Build & Run the application
 
 
 ## Project Status
-Summary of the [Kanban board](https://github.com/users/TASelwyn/projects) as of 2026-11-12.
+Summary of the [Kanban board](https://github.com/users/TASelwyn/projects) as of 2026-11-26.
 
 ### Todo
-| Issue | Task | Assignee |
-|---|---|---|
-| #14 | Shopping cart | TASelwyn |
-| #15 | Checkout controllers | |
-| #31 | Inventory updates for simulated purchases | |
-| #32 | Inventory and checkout integration tests | |
-| #33 | Thymeleaf pages | |
+| Issue | Task                 | Assignee    |
+|-------|----------------------|-------------|
+| #50   | Recommended Books    |             |
+| #51   | Recommended Books UI |             |
+| #52   | Admin page           |             |
 
 ### In Progress
 Nothing currently in progress.
 
 ### Done
-| Issue | Task | Assignee | PR |
-|---|---|---|---|
-| #1 | Add initial Spring setup | | #2 |
-| #3 | Add Maven CI | | #4 |
-| #5 | Implement Book JPA entity | SamTouma8 | #11 |
-| #6 | Configure H2 database | SamTouma8 | #12 |
-| #7 | Implement BookRepository | SamTouma8 | #16 |
-| #8 | Populate sample book data | SamTouma8 | #17 |
-| #9 | Write repository and integration tests | SamTouma8 | #26 |
-| #13 | Azure deployment | | |
-| #18 | Create Thymeleaf pages (2/2 sub-issues) | | |
-| #22 | Book controller: list, search and detail endpoints | initishgrover | #23 |
-| #29 | Database seeding and book retrieval across environments | | |
-| #30 | Resolve book catalog integration issues | | |
+(Sorted by issue ID, not completion milestone or workload)
 
-**Next up:** shopping cart, checkout and inventory updates for simulated purchases, followed by integration tests and Thymeleaf pages.
+| Issue | Task                                                    | Assignee      | PR  |
+|-------|---------------------------------------------------------|---------------|-----|
+| #1    | Add initial Spring setup                                | TASelwyn      | #2  |
+| #3    | Add Maven CI                                            | TASelwyn      | #4  |
+| #5    | Implement Book JPA entity                               | SamTouma8     | #11 |
+| #6    | Configure H2 database                                   | SamTouma8     | #12 |
+| #7    | Implement BookRepository                                | SamTouma8     | #16 |
+| #8    | Populate sample book data                               | SamTouma8     | #17 |
+| #9    | Write repository and integration tests                  | SamTouma8     | #26 |
+| #10   | Document Database Schema                               | TASelwyn      | #47 |
+| #13   | Azure deployment                                        | TASelwyn      | N/A |
+| #14   | Shopping cart logic                                     | TASelwyn      | #35 |
+| #15   | Checkout controllers/logic                              | Kemal-Sogut   | #41 |
+| #18   | Create Thymeleaf pages                                  | Kemal-Sogut   | #21 |
+| #22   | Book controller: list, search and detail endpoints      | initishgrover | #23 |
+| #29   | Database seeding and book retrieval across environments | SamTouma8     | #17 |
+| #38   | User Toggle                                             | initishgrover | #39 |
+| #40   | Update documentation                                    | TASelwyn      | #47 |
+| #45   | Order Confirmation and Thank You Page                   | SamTouma8     | #46 |
+| #48   | Shopping cart UI                                        | CamGreer | #42 |
+| #49   | Book Catalog Service                                    | CamGreer | #24 |
 
 ## Authors
 - Thomas Selwyn (101183163)
@@ -85,9 +90,7 @@ Nothing currently in progress.
 
 ![Database schema](docs/uml.png)
 
-Source: [`docs/database.puml`](docs/database.puml)
-
-Generated using [PlantUML](https://www.plantuml.com/plantuml/uml/)
+Generated using [PlantUML](https://www.plantuml.com/plantuml/uml/), Source: [`docs/database.puml`](docs/database.puml)
 
 ### Database Seeding
 
@@ -100,7 +103,6 @@ The seed script contains 10 books with:
 - Unique 13-digit ISBNs without hyphens
 - Titles, authors, and publishers
 - Descriptions and cover image URLs
-- Prices stored as decimal values
 - Different inventory quantities, including an out-of-stock book
 
 The in-memory H2 database resets when the application stops.
