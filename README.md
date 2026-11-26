@@ -16,7 +16,9 @@ src/main/
          - repository/      # ORM Repos Interfaces (to talk to db)
          - service/         # Application Logic
    - resources/             # Program Setup
-     - db.changelog/        # Database Seed
+     - db/                  # Database Seed
+     - static/              # Thymeleaf JS/CSS files
+     - templates/           # Thymeleaf HTML templates
      - application.yml      # Spring Boot configuration
 mvnw                        # Maven Runtime
 ```
@@ -39,37 +41,44 @@ Build & Run the application
 
 
 ## Project Status
-Summary of the [Kanban board](https://github.com/users/TASelwyn/projects) as of 2026-11-12.
+Summary of the [Kanban board](https://github.com/users/TASelwyn/projects) as of 2026-11-26.
 
 ### Todo
-| Issue | Task | Assignee |
-|---|---|---|
-| #14 | Shopping cart | TASelwyn |
-| #15 | Checkout controllers | |
-| #31 | Inventory updates for simulated purchases | |
-| #32 | Inventory and checkout integration tests | |
-| #33 | Thymeleaf pages | |
+| Issue | Task                 | Assignee      |
+|-------|----------------------|---------------|
+| #50   | Recommended Books    | initishgrover |
+| #51   | Recommended Books UI | Kemal-Sogut   |
+| #52   | Admin page           | TASelwyn      |
+| #54   | Admin page UI        | CamGreer      |
+| #56   | Orders UI            | SamTouma8     |
 
 ### In Progress
 Nothing currently in progress.
 
 ### Done
-| Issue | Task | Assignee | PR |
-|---|---|---|---|
-| #1 | Add initial Spring setup | | #2 |
-| #3 | Add Maven CI | | #4 |
-| #5 | Implement Book JPA entity | SamTouma8 | #11 |
-| #6 | Configure H2 database | SamTouma8 | #12 |
-| #7 | Implement BookRepository | SamTouma8 | #16 |
-| #8 | Populate sample book data | SamTouma8 | #17 |
-| #9 | Write repository and integration tests | SamTouma8 | #26 |
-| #13 | Azure deployment | | |
-| #18 | Create Thymeleaf pages (2/2 sub-issues) | | |
-| #22 | Book controller: list, search and detail endpoints | initishgrover | #23 |
-| #29 | Database seeding and book retrieval across environments | | |
-| #30 | Resolve book catalog integration issues | | |
+(Sorted by issue ID, not completion milestone or workload)
 
-**Next up:** shopping cart, checkout and inventory updates for simulated purchases, followed by integration tests and Thymeleaf pages.
+| Issue | Task                                                     | Assignee      | PR  |
+|-------|----------------------------------------------------------|---------------|-----|
+| #1    | Add initial Spring setup                                 | TASelwyn      | #2  |
+| #3    | Add Maven CI                                             | TASelwyn      | #4  |
+| #5    | Implement Book JPA entity                                | SamTouma8     | #11 |
+| #6    | Configure H2 database                                    | SamTouma8     | #12 |
+| #7    | Implement BookRepository                                 | SamTouma8     | #16 |
+| #8    | Populate sample book data                                | SamTouma8     | #17 |
+| #9    | Write repository and integration tests                   | SamTouma8     | #26 |
+| #10   | Document Database Schema                                 | TASelwyn      | #47 |
+| #13   | Azure deployment                                         | TASelwyn      | N/A |
+| #14   | Shopping cart logic                                      | TASelwyn      | #35 |
+| #15   | Checkout controllers/logic                               | Kemal-Sogut   | #41 |
+| #18   | Create Thymeleaf pages                                   | Kemal-Sogut   | #21 |
+| #22   | Book controller: list, search and detail endpoints       | initishgrover | #23 |
+| #29   | Database seeding and book retrieval across environments  | SamTouma8     | #17 |
+| #38   | User Toggle                                              | initishgrover | #39 |
+| #40   | Update documentation                                     | TASelwyn      | #47 |
+| #45   | Order Confirmation and Thank You Page                    | SamTouma8     | #46 |
+| #48   | Shopping cart UI                                         | CamGreer      | #42 |
+| #49   | Book Catalog Service                                     | CamGreer      | #24 |
 
 ## Authors
 - Thomas Selwyn (101183163)
@@ -81,7 +90,9 @@ Nothing currently in progress.
 
 ### Database Schema
 
-![Database schema](https://i.devil.wtf/2026/xKZzvWQfDkUvTCV4)
+![Database schema](docs/uml.png)
+
+Generated using [PlantUML](https://www.plantuml.com/plantuml/uml/), Source: [`docs/database.puml`](docs/database.puml)
 
 ### Database Seeding
 
@@ -94,20 +105,12 @@ The seed script contains 10 books with:
 - Unique 13-digit ISBNs without hyphens
 - Titles, authors, and publishers
 - Descriptions and cover image URLs
-- Prices stored as decimal values
 - Different inventory quantities, including an out-of-stock book
-
-When the `local` Spring profile is active, Spring Boot
-executes the seed script after Hibernate initializes
-the database schema.
-
-Each INSERT statement uses WHERE NOT EXISTS to prevent
-duplicate ISBNs when the script is executed repeatedly.
 
 The in-memory H2 database resets when the application stops.
 Sample books are automatically reloaded on the next startup.
 
-The database can be inspected at:
+When running the project locally, the database can be inspected at:
 http://localhost:8080/h2-console
 
 ## License
